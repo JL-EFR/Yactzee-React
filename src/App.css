@@ -1,0 +1,9 @@
+.yactzee {
+  display: flex; 
+  justify-content: center;
+}
+.dice {width: 10%;}
+
+.flex {display: flex;}
+
+.fifty {width: 50%;}
