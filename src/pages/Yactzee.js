@@ -118,7 +118,7 @@ function Ya() {
   function updatescore(type, score) {
     allscore[turn] += score
     byscore[turn][type] = score
-
+    setre(2)
     if (byscore[turn][0] === 0) {
       let sum = 0
       for (let index = 1; index <= 6; index++) {
@@ -157,13 +157,16 @@ function Ya() {
   }
 
   function threeok() {
-    let occ = [7]
+    let occ = []
+    for (let index = 0; index <= 6; index++) {
+      occ[index] = 0
+    }
     occ[dice1] += 1
     occ[dice2] += 1
     occ[dice3] += 1
     occ[dice4] += 1
     occ[dice5] += 1
-    if (Math.max(occ) >= 3) {
+    if (Math.max(...occ) >= 3) {
       return dice1 + dice2 + dice3 + dice4 + dice5
     } else {
       return 0
@@ -171,13 +174,16 @@ function Ya() {
   }
 
   function fourok() {
-    let occ = [7]
+    let occ = []
+    for (let index = 0; index <= 6; index++) {
+      occ[index] = 0
+    }
     occ[dice1] += 1
     occ[dice2] += 1
     occ[dice3] += 1
     occ[dice4] += 1
     occ[dice5] += 1
-    if (Math.max(occ) >= 4) {
+    if (Math.max(...occ) >= 4) {
       return dice1 + dice2 + dice3 + dice4 + dice5
     } else {
       return 0
@@ -185,26 +191,32 @@ function Ya() {
   }
 
   function yz() {
-    let occ = [7]
+    let occ = []
+    for (let index = 0; index <= 6; index++) {
+      occ[index] = 0
+    }
     occ[dice1] += 1
     occ[dice2] += 1
     occ[dice3] += 1
     occ[dice4] += 1
     occ[dice5] += 1
-    if (Math.max(occ) === 5) {
+    if (Math.max(...occ) === 5) {
       return 50
     } else {
       return 0
     }
   }
   function full() {
-    let occ = [7]
+    let occ = []
+    for (let index = 0; index <= 6; index++) {
+      occ[index] = 0
+    }
     occ[dice1] += 1
     occ[dice2] += 1
     occ[dice3] += 1
     occ[dice4] += 1
     occ[dice5] += 1
-    if (Math.max(occ) === 3 && occ.indexOf(2) !== -1) {
+    if (Math.max(...occ) === 3 && occ.indexOf(2) !== -1) {
       return 25
     } else {
       return 0
@@ -212,7 +224,10 @@ function Ya() {
   }
 
   function small() {
-    let occ = [7]
+    let occ = []
+    for (let index = 0; index <= 6; index++) {
+      occ[index] = 0
+    }
     occ[dice1] += 1
     occ[dice2] += 1
     occ[dice3] += 1
@@ -229,14 +244,17 @@ function Ya() {
   }
 
   function large() {
-    let occ = [7]
+    let occ = []
+    for (let index = 0; index <= 6; index++) {
+      occ[index] = 0
+    }
     occ[dice1] += 1
     occ[dice2] += 1
     occ[dice3] += 1
     occ[dice4] += 1
     occ[dice5] += 1
-    const xor = (occ[1] === 0 && occ[6] !== 0) || (occ[1] !== 0 && occ[6] === 0)
-    if (xor && Math.max(occ) === 1) {
+    const xor = (occ[1] === 0 && occ[6] === 1) || (occ[1] === 1 && occ[6] === 0)
+    if (xor && Math.max(...occ) === 1) {
       return 40
     }
     return 0
@@ -269,35 +287,40 @@ function Ya() {
               {Diceset(dice1)}
               <Form.Check
                 type="checkbox"
-                onChange={(e) => setsel1(e.target.value)}
+                onClick={() => setsel1(!sel1)}
+                value={sel1}
               />
             </div>
             <div className="dice">
               {Diceset(dice2)}
               <Form.Check
                 type="checkbox"
-                onChange={(e) => setsel2(e.target.value)}
+                onClick={() => setsel2(!sel2)}
+                value={sel2}
               />
             </div>
             <div className="dice">
               {Diceset(dice3)}
               <Form.Check
                 type="checkbox"
-                onChange={(e) => setsel3(e.target.value)}
+                onClick={() => setsel3(!sel3)}
+                value={sel3}
               />
             </div>
             <div className="dice">
               {Diceset(dice4)}
               <Form.Check
                 type="checkbox"
-                onChange={(e) => setsel4(e.target.value)}
+                onClick={() => setsel4(!sel4)}
+                value={sel4}
               />
             </div>
             <div className="dice">
               {Diceset(dice5)}
               <Form.Check
                 type="checkbox"
-                onChange={(e) => setsel5(e.target.value)}
+                onClick={() => setsel5(!sel5)}
+                value={sel5}
               />
             </div>
             <Button onClick={Reroll}>Reroll({re}/2)</Button>
