@@ -71,6 +71,11 @@ function Ya() {
     setdice3(rollDice)
     setdice4(rollDice)
     setdice5(rollDice)
+    setsel1(false)
+    setsel2(false)
+    setsel3(false)
+    setsel4(false)
+    setsel5(false)
   }
   function Diceset(d) {
     switch (d) {
@@ -111,6 +116,11 @@ function Ya() {
       setdice5(rollDice)
     }
     setre(re - 1)
+    setsel1(false)
+    setsel2(false)
+    setsel3(false)
+    setsel4(false)
+    setsel5(false)
   }
   const [allscore, setallscore] = useState([])
   const [byscore, setbyscore] = useState([])
@@ -287,224 +297,222 @@ function Ya() {
               {Diceset(dice1)}
               <Form.Check
                 type="checkbox"
-                onClick={() => setsel1(!sel1)}
-                value={sel1}
+                onChange={() => setsel1(!sel1)}
+                checked={sel1}
               />
             </div>
             <div className="dice">
               {Diceset(dice2)}
               <Form.Check
                 type="checkbox"
-                onClick={() => setsel2(!sel2)}
-                value={sel2}
+                onChange={() => setsel2(!sel2)}
+                checked={sel2}
               />
             </div>
             <div className="dice">
               {Diceset(dice3)}
               <Form.Check
                 type="checkbox"
-                onClick={() => setsel3(!sel3)}
-                value={sel3}
+                onChange={() => setsel3(!sel3)}
+                checked={sel3}
               />
             </div>
             <div className="dice">
               {Diceset(dice4)}
               <Form.Check
                 type="checkbox"
-                onClick={() => setsel4(!sel4)}
-                value={sel4}
+                onChange={() => setsel4(!sel4)}
+                checked={sel4}
               />
             </div>
             <div className="dice">
               {Diceset(dice5)}
               <Form.Check
                 type="checkbox"
-                onClick={() => setsel5(!sel5)}
-                value={sel5}
+                onChange={() => setsel5(!sel5)}
+                checked={sel5}
               />
             </div>
             <Button onClick={Reroll}>Reroll({re}/2)</Button>
           </Form>
-          {byscore[turn][1] && (
-            <div className="flex">
-              <div className="fifty">
-                <div className="flex">
-                  <h2>one </h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][1] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(1, onetosix(1))
-                      }}
-                    >
-                      {onetosix(1)}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][1] !== -1 && <h2>{byscore[turn][1]}</h2>}
-                </div>
-                <div className="flex">
-                  <h2>two </h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][2] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(2, onetosix(2))
-                      }}
-                    >
-                      {onetosix(2)}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][2] !== -1 && <h2>{byscore[turn][2]}</h2>}
-                </div>
-                <div className="flex">
-                  <h2>three </h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][3] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(3, onetosix(3))
-                      }}
-                    >
-                      {onetosix(3)}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][3] !== -1 && <h2>{byscore[turn][3]}</h2>}
-                </div>
-                <div className="flex">
-                  <h2>four </h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][4] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(4, onetosix(4))
-                      }}
-                    >
-                      {onetosix(4)}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][4] !== -1 && <h2>{byscore[turn][4]}</h2>}
-                </div>
-                <div className="flex">
-                  <h2>five </h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][5] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(5, onetosix(5))
-                      }}
-                    >
-                      {onetosix(5)}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][5] !== -1 && <h2>{byscore[turn][5]}</h2>}
-                </div>
-                <div className="flex">
-                  <h2>six </h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][6] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(6, onetosix(6))
-                      }}
-                    >
-                      {onetosix(6)}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][6] !== -1 && <h2>{byscore[turn][6]}</h2>}
-                </div>
-                <div>
-                  <h2>bonus {byscore[turn][0]}</h2>
-                </div>
+          <div className="flex">
+            <div className="fifty">
+              <div className="flex">
+                <h2>one </h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][1] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(1, onetosix(1))
+                    }}
+                  >
+                    {onetosix(1)}
+                  </Button>
+                )}{" "}
+                {byscore[turn][1] !== -1 && <h2>{byscore[turn][1]}</h2>}
               </div>
-              <div className="fifty">
-                <div className="flex">
-                  <h2>three of a kind</h2> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][7] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(7, threeok())
-                      }}
-                    >
-                      {threeok()}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][7] !== -1 && <h2>{byscore[turn][7]}</h2>}
-                </div>
-                <div className="flex">
-                  <h2>four of a kind</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][8] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(8, fourok())
-                      }}
-                    >
-                      {fourok()}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][8] !== -1 && <h2>{byscore[turn][8]}</h2>}
-                </div>
-                <div className="flex">
-                  <h2>yactzee</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][9] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(9, yz())
-                      }}
-                    >
-                      {yz()}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][9] !== -1 && <h2>{byscore[turn][9]}</h2>}
-                </div>
-                <div className="flex">
-                  <h2>small straight</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][10] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(10, small())
-                      }}
-                    >
-                      {small()}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][10] !== -1 && <h2>{byscore[turn][10]}</h2>}
-                </div>
-                <div className="flex">
-                  <h2>large straight</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][11] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(11, large())
-                      }}
-                    >
-                      {large()}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][11] !== -1 && <h2>{byscore[turn][11]}</h2>}
-                </div>
-                <div className="flex">
-                  <h2>fullhouse</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][12] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(12, full())
-                      }}
-                    >
-                      {full()}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][12] !== -1 && <h2>{byscore[turn][12]}</h2>}
-                </div>
-                <div className="flex">
-                  <h2>chance</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  {byscore[turn][13] === -1 && (
-                    <Button
-                      onClick={() => {
-                        updatescore(13, chance())
-                      }}
-                    >
-                      {chance()}
-                    </Button>
-                  )}{" "}
-                  {byscore[turn][13] !== -1 && <h2>{byscore[turn][13]}</h2>}
-                </div>
+              <div className="flex">
+                <h2>two </h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][2] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(2, onetosix(2))
+                    }}
+                  >
+                    {onetosix(2)}
+                  </Button>
+                )}{" "}
+                {byscore[turn][2] !== -1 && <h2>{byscore[turn][2]}</h2>}
+              </div>
+              <div className="flex">
+                <h2>three </h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][3] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(3, onetosix(3))
+                    }}
+                  >
+                    {onetosix(3)}
+                  </Button>
+                )}{" "}
+                {byscore[turn][3] !== -1 && <h2>{byscore[turn][3]}</h2>}
+              </div>
+              <div className="flex">
+                <h2>four </h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][4] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(4, onetosix(4))
+                    }}
+                  >
+                    {onetosix(4)}
+                  </Button>
+                )}{" "}
+                {byscore[turn][4] !== -1 && <h2>{byscore[turn][4]}</h2>}
+              </div>
+              <div className="flex">
+                <h2>five </h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][5] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(5, onetosix(5))
+                    }}
+                  >
+                    {onetosix(5)}
+                  </Button>
+                )}{" "}
+                {byscore[turn][5] !== -1 && <h2>{byscore[turn][5]}</h2>}
+              </div>
+              <div className="flex">
+                <h2>six </h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][6] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(6, onetosix(6))
+                    }}
+                  >
+                    {onetosix(6)}
+                  </Button>
+                )}{" "}
+                {byscore[turn][6] !== -1 && <h2>{byscore[turn][6]}</h2>}
+              </div>
+              <div>
+                <h2>bonus {byscore[turn][0]}</h2>
               </div>
             </div>
-          )}
+            <div className="fifty">
+              <div className="flex">
+                <h2>three of a kind</h2> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][7] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(7, threeok())
+                    }}
+                  >
+                    {threeok()}
+                  </Button>
+                )}{" "}
+                {byscore[turn][7] !== -1 && <h2>{byscore[turn][7]}</h2>}
+              </div>
+              <div className="flex">
+                <h2>four of a kind</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][8] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(8, fourok())
+                    }}
+                  >
+                    {fourok()}
+                  </Button>
+                )}{" "}
+                {byscore[turn][8] !== -1 && <h2>{byscore[turn][8]}</h2>}
+              </div>
+              <div className="flex">
+                <h2>yactzee</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][9] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(9, yz())
+                    }}
+                  >
+                    {yz()}
+                  </Button>
+                )}{" "}
+                {byscore[turn][9] !== -1 && <h2>{byscore[turn][9]}</h2>}
+              </div>
+              <div className="flex">
+                <h2>small straight</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][10] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(10, small())
+                    }}
+                  >
+                    {small()}
+                  </Button>
+                )}{" "}
+                {byscore[turn][10] !== -1 && <h2>{byscore[turn][10]}</h2>}
+              </div>
+              <div className="flex">
+                <h2>large straight</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][11] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(11, large())
+                    }}
+                  >
+                    {large()}
+                  </Button>
+                )}{" "}
+                {byscore[turn][11] !== -1 && <h2>{byscore[turn][11]}</h2>}
+              </div>
+              <div className="flex">
+                <h2>fullhouse</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][12] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(12, full())
+                    }}
+                  >
+                    {full()}
+                  </Button>
+                )}{" "}
+                {byscore[turn][12] !== -1 && <h2>{byscore[turn][12]}</h2>}
+              </div>
+              <div className="flex">
+                <h2>chance</h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                {byscore[turn][13] === -1 && (
+                  <Button
+                    onClick={() => {
+                      updatescore(13, chance())
+                    }}
+                  >
+                    {chance()}
+                  </Button>
+                )}{" "}
+                {byscore[turn][13] !== -1 && <h2>{byscore[turn][13]}</h2>}
+              </div>
+            </div>
+          </div>
           {allscore.map((value, index) => {
             return (
               index !== 0 && (
